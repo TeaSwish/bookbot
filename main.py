@@ -1,7 +1,6 @@
 from stats import count_words
 from stats import count_chars
 from stats import sort_dictionary
-from stats import pretty_print
 
 def get_book_text(path):
     with open(path) as f:
