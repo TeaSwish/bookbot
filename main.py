@@ -1,20 +1,24 @@
 from stats import count_words
 from stats import count_chars
 from stats import sort_dictionary
+import sys
 
 def get_book_text(path):
     with open(path) as f:
         book_text = f.read()
         return book_text
-        #print(book_text)
+        
 
 def main():
-    words = count_words(get_book_text("books/frankenstein.txt"))
-    chars = count_chars(get_book_text("books/frankenstein.txt"))
+    if len(sys.argv) != 2:
+        print("Usage: python3 main.py <path_to_book>")
+        sys.exit(1)
+    words = count_words(get_book_text(sys.argv[1]))
+    chars = count_chars(get_book_text(sys.argv[1]))
     print(f"============ BOOKBOT ============")
-    print(f"Analyzing book found at 'books/frankenstein.txt'")
+    print(f"Analyzing book found at '{sys.argv[1]}'")
     print(f"------------ Word Count ------------")
-    print(f"{words} words found in the document")
+    print(f"Found {words} total words")
     print(f"------------ Character Count ------------")
     for item in sort_dictionary(chars):
         if item['char'].isalpha():
